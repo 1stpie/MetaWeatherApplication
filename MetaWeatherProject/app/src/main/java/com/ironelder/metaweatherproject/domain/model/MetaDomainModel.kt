@@ -1,4 +1,3 @@
 package com.ironelder.metaweatherproject.domain.model
 
-interface MetaDomainModel {
-}
+interface MetaDomainModel
