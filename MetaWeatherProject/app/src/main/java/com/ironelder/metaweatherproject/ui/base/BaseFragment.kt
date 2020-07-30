@@ -7,16 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ironelder.metaweatherproject.R
-/**
- * A simple [Fragment] subclass.
- */
-class BaseFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return TextView(activity).apply {
-            setText(R.string.hello_blank_fragment)
-        }
-    }
+abstract class BaseFragment(
+    private val layoutResourceId: Int
+) : Fragment(layoutResourceId) {
 
 }

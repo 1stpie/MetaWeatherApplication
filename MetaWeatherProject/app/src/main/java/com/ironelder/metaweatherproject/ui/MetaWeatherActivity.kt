@@ -2,11 +2,8 @@ package com.ironelder.metaweatherproject.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ironelder.metaweatherproject.R
+import com.ironelder.metaweatherproject.ui.base.BaseActivity
 
-class MetaWeatherActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meta_weather)
-    }
+class MetaWeatherActivity : BaseActivity(R.layout.activity_meta_weather) {
 }
