@@ -3,11 +3,11 @@ package com.ironelder.metaweatherproject.data.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class WeatherDataModel(
+data class WeatherData(
 
     @SerializedName("consolidated_weather")
     @Expose
-    val consolidated_weather: List<ConsolidatedWeather>,
+    val consolidated_weatherData: List<ConsolidatedWeatherData>,
 
     @SerializedName("latt_long")
     @Expose
@@ -19,11 +19,11 @@ data class WeatherDataModel(
 
     @SerializedName("parent")
     @Expose
-    val parent: Parent,
+    val parentData: ParentData,
 
     @SerializedName("sources")
     @Expose
-    val sources: List<Source>,
+    val sourceData: List<SourceData>,
 
     @SerializedName("sun_rise")
     @Expose
@@ -52,4 +52,4 @@ data class WeatherDataModel(
     @SerializedName("woeid")
     @Expose
     val woeid: Int
-) : MetaDataModel
+) : MetaWeatherData

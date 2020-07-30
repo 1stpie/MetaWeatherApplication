@@ -3,21 +3,22 @@ package com.ironelder.metaweatherproject.data.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Source(
+data class ParentData(
 
-    @SerializedName("crawl_rate")
+    @SerializedName("latt_long")
     @Expose
-    val crawl_rate: Int,
+    val latt_long: String,
 
-    @SerializedName("slug")
+    @SerializedName("location_type")
     @Expose
-    val slug: String,
+    val location_type: String,
 
     @SerializedName("title")
     @Expose
     val title: String,
 
-    @SerializedName("url")
+    @SerializedName("woeid")
     @Expose
-    val url: String
+    val woeid: Int
+
 )

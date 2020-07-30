@@ -3,7 +3,7 @@ package com.ironelder.metaweatherproject.data.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ConsolidatedWeather(
+data class ConsolidatedWeatherData(
 
     @SerializedName("air_pressure")
     @Expose

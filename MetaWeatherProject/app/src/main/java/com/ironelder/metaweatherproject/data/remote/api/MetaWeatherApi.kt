@@ -1,16 +1,15 @@
 package com.ironelder.metaweatherproject.data.remote.api
 
-import com.ironelder.metaweatherproject.data.model.LocationDataModel
-import com.ironelder.metaweatherproject.data.model.WeatherDataModel
-import io.reactivex.Single
+import com.ironelder.metaweatherproject.data.model.LocationData
+import com.ironelder.metaweatherproject.data.model.WeatherData
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MetaWeatherApi {
     @GET("api/location/search/")
-    fun getLocation(@Query("query") query: String): Single<List<LocationDataModel>>
+    suspend fun getLocation(@Query("query") query: String): List<LocationData>
 
     @GET("api/location/{locationId}/")
-    fun getWeather(@Path("locationId") locationId: String): Single<WeatherDataModel>
+    suspend fun getWeather(@Path("locationId") locationId: String): WeatherData
 }
