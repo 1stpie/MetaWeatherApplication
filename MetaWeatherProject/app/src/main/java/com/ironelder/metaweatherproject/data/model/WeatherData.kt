@@ -1,55 +1,86 @@
 package com.ironelder.metaweatherproject.data.model
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
 data class WeatherData(
 
-    @SerializedName("consolidated_weather")
-    @Expose
     val consolidated_weatherData: List<ConsolidatedWeatherData>,
 
-    @SerializedName("latt_long")
-    @Expose
     val latt_long: String,
 
-    @SerializedName("location_type")
-    @Expose
     val location_type: String,
 
-    @SerializedName("parent")
-    @Expose
     val parentData: ParentData,
 
-    @SerializedName("sources")
-    @Expose
     val sourceData: List<SourceData>,
 
-    @SerializedName("sun_rise")
-    @Expose
     val sun_rise: String,
 
-    @SerializedName("sun_set")
-    @Expose
     val sun_set: String,
 
-    @SerializedName("time")
-    @Expose
     val time: String,
 
-    @SerializedName("timezone")
-    @Expose
     val timezone: String,
 
-    @SerializedName("timezone_name")
-    @Expose
     val timezone_name: String,
 
-    @SerializedName("title")
-    @Expose
     val title: String,
 
-    @SerializedName("woeid")
-    @Expose
     val woeid: Int
 ) : MetaWeatherData
+
+data class SourceData(
+
+    val crawl_rate: Int,
+
+    val slug: String,
+
+    val title: String,
+
+    val url: String
+)
+
+
+data class ParentData(
+
+    val latt_long: String,
+
+    val location_type: String,
+
+    val title: String,
+
+    val woeid: Int
+
+)
+
+
+data class ConsolidatedWeatherData(
+
+    val air_pressure: Double,
+
+    val applicable_date: String,
+
+    val created: String,
+
+    val humidity: Int,
+
+    val id: Long,
+
+    val max_temp: Double,
+
+    val min_temp: Double,
+
+    val predictability: Int,
+
+    val the_temp: Double,
+
+    val visibility: Double,
+
+    val weather_state_abbr: String,
+
+    val weather_state_name: String,
+
+    val wind_direction: Double,
+
+    val wind_direction_compass: String,
+
+    val wind_speed: Double
+)

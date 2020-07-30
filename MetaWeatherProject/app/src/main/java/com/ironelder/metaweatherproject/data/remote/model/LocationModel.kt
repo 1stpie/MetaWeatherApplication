@@ -1,9 +1,9 @@
-package com.ironelder.metaweatherproject.data.model
+package com.ironelder.metaweatherproject.data.remote.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ParentData(
+data class LocationModel (
 
     @SerializedName("latt_long")
     @Expose
@@ -21,4 +21,4 @@ data class ParentData(
     @Expose
     val woeid: Int
 
-)
+) : MetaWeatherModel
