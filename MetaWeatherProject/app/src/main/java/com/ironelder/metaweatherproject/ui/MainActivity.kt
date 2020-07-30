@@ -1,7 +1,8 @@
-package com.ironelder.metaweatherproject
+package com.ironelder.metaweatherproject.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ironelder.metaweatherproject.R
 
 class MainActivity : AppCompatActivity() {
 
