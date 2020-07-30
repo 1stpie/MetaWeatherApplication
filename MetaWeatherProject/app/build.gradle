@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
+
 apply plugin: 'kotlin-android'
+
 apply plugin: 'kotlin-android-extensions'
+
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -18,15 +21,52 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "type"
+    productFlavors{
+        dev{
+            dimension "type"
+
+            applicationIdSuffix ".dev"
+
+            buildConfigField "String", "WEATHER_BASE_URL", "\"https://www.metaweather.com/\""
+        }
+        prod{
+            dimension "type"
+
+            buildConfigField "String", "WEATHER_BASE_URL", "\"https://www.metaweather.com/\""
+        }
+    }
+
+    dataBinding{
+        enabled true
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
 }
