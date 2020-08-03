@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.ironelder.metaweatherproject.R
 import com.ironelder.metaweatherproject.databinding.FragmentHomeBinding
 import com.ironelder.metaweatherproject.ui.base.BaseFragment
+import com.ironelder.metaweatherproject.ui.home.adapter.WeatherAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,8 +19,15 @@ class HomeFragment :
         super.onActivityCreated(savedInstanceState)
 
 //        viewDataBinding.rvWeatherResult.adapter
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer {isLoading->
-            viewDataBinding.pgbLoading.visibility = if(isLoading) View.VISIBLE else View.GONE
+        viewDataBinding.rvWeatherResult.adapter = WeatherAdapter()
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+            viewDataBinding.pgbLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
+        viewModel.weatherDataList.observe(viewLifecycleOwner, Observer { datalist ->
+            println("datalist = $datalist")
+            if (datalist.isNotEmpty()) {
+                (viewDataBinding.rvWeatherResult.adapter as WeatherAdapter).setWeatherList(datalist)
+            }
         })
     }
 

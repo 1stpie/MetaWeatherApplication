@@ -2,6 +2,7 @@ package com.ironelder.metaweatherproject.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.ironelder.metaweatherproject.BuildConfig
 import com.ironelder.metaweatherproject.domain.repository.MetaWeatherRepository
 import com.ironelder.metaweatherproject.ui.base.BaseWeatherViewModel
 import com.ironelder.metaweatherproject.ui.home.model.HomeWeatherModel
@@ -17,7 +18,7 @@ class HomeViewModel(private val repository: MetaWeatherRepository) :
     val refreshing: LiveData<Boolean> get() = _refreshing
 
     private val _isLoading: NotNullMutableLiveData<Boolean> = NotNullMutableLiveData(false)
-    val isLoading: LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     private val _weatherDataList: NotNullMutableLiveData<List<HomeWeatherModel>> =
         NotNullMutableLiveData(
@@ -32,11 +33,12 @@ class HomeViewModel(private val repository: MetaWeatherRepository) :
                 showLoading()
             }
             val simpleDateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
+            val imageBaseUrl: String = "${BuildConfig.WEATHER_BASE_URL}static/img/weather/png/64/%s.png"
             val calendar = Calendar.getInstance()
             val today: String = simpleDateFormat.format(calendar.time)
             calendar.add(Calendar.DAY_OF_YEAR, 1)
             val tomorrow: String = simpleDateFormat.format(calendar.time)
-            val weatherDataList: MutableList<HomeWeatherModel> = mutableListOf()
+            val homeModelWeatherDataList: MutableList<HomeWeatherModel> = mutableListOf()
             withContext(Dispatchers.IO) {
                 val local = repository.getLocation("se")
                 local.map {
@@ -46,22 +48,23 @@ class HomeViewModel(private val repository: MetaWeatherRepository) :
                             weather.consolidated_weatherData.first { it.applicable_date == today }
                         val tomorrowWeather =
                             weather.consolidated_weatherData.first { it.applicable_date == tomorrow }
-                        weatherDataList.add(
+                        homeModelWeatherDataList.add(
                             HomeWeatherModel(
                                 title = weather.title,
                                 detailId = weather.woeid,
                                 todayHumidity = todayWeather.humidity,
                                 todayTemp = todayWeather.the_temp,
                                 todayWeatherName = todayWeather.weather_state_name,
-                                todayImageUrl = todayWeather.weather_state_abbr,
+                                todayImageUrl = String.format(imageBaseUrl,todayWeather.weather_state_abbr),
                                 tomorrowHumidity = tomorrowWeather.humidity,
                                 tomorrowTemp = tomorrowWeather.the_temp,
                                 tomorrowWeatherName = tomorrowWeather.weather_state_name,
-                                tomorrowImageUrl = tomorrowWeather.weather_state_abbr
+                                tomorrowImageUrl = String.format(imageBaseUrl,tomorrowWeather.weather_state_abbr)
                             )
                         )
                     }
                 }.awaitAll()
+                _weatherDataList.postValue(homeModelWeatherDataList)
                 println("weatherDataList = $weatherDataList")
             }
             withContext(Dispatchers.Main) {
