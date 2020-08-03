@@ -16,6 +16,8 @@ private const val GSON_DATE_FORMAT = "E, dd MMM yyyy HH:mm:ss Z"
 
 val remoteModule = module {
 
+    single { HttpLoggingInterceptor() }
+
     single {
         OkHttpClient.Builder()
             .connectTimeout(30L, TimeUnit.SECONDS)
