@@ -6,4 +6,5 @@
     <string name="splash_fragment">Splash Fragment</string>
     <string name="home_fragment">Home Fragment</string>
     <string name="application_splash_title">MetaWeather</string>
+    <string name="meta_weather_title">Local Weather</string>
 </resources>
