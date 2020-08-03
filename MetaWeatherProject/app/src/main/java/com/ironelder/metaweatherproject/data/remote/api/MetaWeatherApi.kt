@@ -11,5 +11,5 @@ interface MetaWeatherApi {
     suspend fun getLocation(@Query("query") query: String): List<LocationModel>
 
     @GET("api/location/{locationId}/")
-    suspend fun getWeather(@Path("locationId") locationId: String): WeatherModel
+    suspend fun getWeather(@Path("locationId") locationId: Int): WeatherModel
 }

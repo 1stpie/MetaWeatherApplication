@@ -11,7 +11,7 @@ class MetaWeatherDataSourceImpl(private val weatherApi: MetaWeatherApi) : MetaWe
         return weatherApi.getLocation(query).map(LocationRemoteMapper::mapToData)
     }
 
-    override suspend fun getWeather(locationId: String): WeatherData {
+    override suspend fun getWeather(locationId: Int): WeatherData {
         return WeatherRemoteMapper.mapToData(weatherApi.getWeather(locationId))
     }
 }
