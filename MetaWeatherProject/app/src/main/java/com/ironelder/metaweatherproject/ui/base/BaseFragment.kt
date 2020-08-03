@@ -63,19 +63,14 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseWeatherViewModel<*>,
         viewDataBinding = DataBindingUtil.inflate<VDB>(inflater, layoutResourceId, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
         }
-        return viewDataBinding.root
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+        viewDataBinding.setVariable(layoutResourceId, viewModel)
         viewModel.state.observe(viewLifecycleOwner, Observer {
             if (it != null && it.isUsed.compareAndSet(false, true)) {
                 @Suppress("UNCHECKED_CAST")
                 onStateChanged(it.event as S)
             }
         })
+        return viewDataBinding.root
 
     }
 
