@@ -1,22 +1,21 @@
 package com.ironelder.metaweatherproject.ui.splash
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.databinding.ViewDataBinding
 import androidx.navigation.fragment.findNavController
 import com.ironelder.metaweatherproject.R
 import com.ironelder.metaweatherproject.ui.base.BaseFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashFragment : BaseFragment(R.layout.fragment_splash) {
+class SplashFragment :
+    BaseFragment<ViewDataBinding, SplashViewModel, SplashState>(R.layout.fragment_splash) {
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(2000)
-            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+    override val viewModel: SplashViewModel by viewModel()
+
+    override fun onStateChanged(changedState: SplashState) {
+        when (changedState) {
+            SplashState.GoHome -> {
+                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+            }
         }
     }
 
