@@ -4,12 +4,12 @@ data class HomeWeatherModel(
 
     val title: String,
     val detailId: Int,
-    val todayHumidity: String,
-    val todayTemp: String,
+    val todayHumidity: Int,
+    val todayTemp: Double,
     val todayWeatherName: String,
     val todayImageUrl: String,
-    val tomorrowHumidity: String,
-    val tomorrowTemp: String,
+    val tomorrowHumidity: Int,
+    val tomorrowTemp: Double,
     val tomorrowWeatherName: String,
     val tomorrowImageUrl: String
 
