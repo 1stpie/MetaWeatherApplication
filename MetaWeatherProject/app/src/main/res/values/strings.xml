@@ -7,4 +7,7 @@
     <string name="home_fragment">Home Fragment</string>
     <string name="application_splash_title">MetaWeather</string>
     <string name="meta_weather_title">Local Weather</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="local">Local</string>
 </resources>

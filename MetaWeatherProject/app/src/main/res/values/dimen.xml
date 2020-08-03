@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- text value -->
+    <dimen name="common_text_size">13sp</dimen>
+    <dimen name="weather_text_size">13sp</dimen>
+    <dimen name="humidity_text_size">11sp</dimen>
+</resources>
