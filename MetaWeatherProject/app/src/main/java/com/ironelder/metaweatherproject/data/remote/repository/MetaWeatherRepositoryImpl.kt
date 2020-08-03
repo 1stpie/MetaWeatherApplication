@@ -1,4 +1,4 @@
-package com.ironelder.metaweatherproject.data.remote
+package com.ironelder.metaweatherproject.data.remote.repository
 
 import com.ironelder.metaweatherproject.data.mapper.LocationDataMapper
 import com.ironelder.metaweatherproject.data.mapper.WeatherDataMapper
@@ -13,7 +13,7 @@ class MetaWeatherRepositoryImpl(private val weatherRemoteDataSource: MetaWeather
         return weatherRemoteDataSource.getLocation(query).map(LocationDataMapper::mapToModel)
     }
 
-    override suspend fun getWeather(locationId: String): WeatherModel {
+    override suspend fun getWeather(locationId: Int): WeatherModel {
         return WeatherDataMapper.mapToModel(weatherRemoteDataSource.getWeather(locationId))
     }
 }
