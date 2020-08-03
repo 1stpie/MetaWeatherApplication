@@ -10,6 +10,6 @@ val viewModelModule = module {
 
     viewModel {SplashViewModel() }
 
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
 
 }
