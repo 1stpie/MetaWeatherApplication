@@ -13,4 +13,4 @@ data class HomeWeatherModel(
     val tomorrowWeatherName: String,
     val tomorrowImageUrl: String
 
-)
+) : MetaHomeModel
