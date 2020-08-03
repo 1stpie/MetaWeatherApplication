@@ -3,11 +3,12 @@ package com.ironelder.metaweatherproject.ui.splash
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.fragment.findNavController
 import com.ironelder.metaweatherproject.R
+import com.ironelder.metaweatherproject.databinding.FragmentSplashBinding
 import com.ironelder.metaweatherproject.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashFragment :
-    BaseFragment<ViewDataBinding, SplashViewModel, SplashState>(R.layout.fragment_splash) {
+    BaseFragment<FragmentSplashBinding, SplashViewModel, SplashState>(R.layout.fragment_splash) {
 
     override val viewModel: SplashViewModel by viewModel()
 
